@@ -1,8 +1,8 @@
-## Opis projektu "Generator zdjęć AI":
+## Opis projektu "VisionForge AI":
 
 ### Cel:
 
-Projekt "Generator zdjęć AI" ma na celu dostarczenie użytkownikom narzędzia do generowania realistycznych i kreatywnych obrazów przy użyciu sztucznej inteligencji. Aplikacja umożliwia tworzenie unikalnych grafik, które mogą być wykorzystane w różnych kontekstach, takich jak sztuka cyfrowa, projektowanie graficzne czy nawet w marketingu.
+Projekt "VisionForge AI" ma na celu dostarczenie użytkownikom narzędzia do generowania realistycznych i kreatywnych obrazów przy użyciu sztucznej inteligencji. Aplikacja umożliwia tworzenie unikalnych grafik, które mogą być wykorzystane w różnych kontekstach, takich jak sztuka cyfrowa, projektowanie graficzne czy nawet w marketingu.
 
 ### Opis funkcji:
 
@@ -30,20 +30,20 @@ Projekt "Generator zdjęć AI" ma na celu dostarczenie użytkownikom narzędzia 
 
 ### Szkice/wizualizacje interfejsu:
 
-- *Strona główna:* Panel sterowania z opcjami generacji, personalizacji, dostępu do galerii.
-- *Okno generacji:* Miejsce do wyboru parametrów i podglądu generowanego obrazu.
-- *Galeria obrazów:* Przeglądanie i zarządzanie wcześniej stworzonymi grafikami.
+- _Strona główna:_ Panel sterowania z opcjami generacji, personalizacji, dostępu do galerii.
+- _Okno generacji:_ Miejsce do wyboru parametrów i podglądu generowanego obrazu.
+- _Galeria obrazów:_ Przeglądanie i zarządzanie wcześniej stworzonymi grafikami.
 
 ### Mapa strony:
 
-- *Strona główna*
+- _Strona główna_
     - Panel sterowania
     - Opcje generacji
     - Galeria obrazów
-- *Okno generacji*
+- _Okno generacji_
     - Parametry generacji
     - Podgląd generowanego obrazu
-- *Galeria obrazów*
+- _Galeria obrazów_
     - Lista wcześniej wygenerowanych obrazów
     - Możliwość udostępniania i pobierania
 
@@ -74,8 +74,8 @@ Architektura oparta jest na strukturze opakowanej, gdzie:
 
 ### Struktura kodu:
 
-- *Katalogi/pliki*: Oddzielne pliki dla logiki generacji, interfejsu, zarządzania danymi.
-- *Style pisania kodu*: Zastosowanie modularności, czytelności i komentarzy w kodzie.
+- _Katalogi/pliki_: Oddzielne pliki dla logiki generacji, interfejsu, zarządzania danymi.
+- _Style pisania kodu_: Zastosowanie modularności, czytelności i komentarzy w kodzie.
 
 ## Testowanie:
 
@@ -118,4 +118,5 @@ Architektura oparta jest na strukturze opakowanej, gdzie:
 - **Koszty utrzymania:** Serwery, ewentualne opłaty za usługi zewnętrzne, wsparcie techniczne.
 
 ---
+
 [English](/README.md)

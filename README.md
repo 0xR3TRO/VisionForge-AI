@@ -2,7 +2,7 @@
 
 ### Goal:
 
-The "AI Image Generator" project aims to provide users with a tool for generating realistic and creative images using artificial intelligence. The application enables the creation of unique graphics that can be used in various contexts such as digital art, graphic design, or even in marketing.
+The "VisionForge AI" project aims to provide users with a tool for generating realistic and creative images using artificial intelligence. The application enables the creation of unique graphics that can be used in various contexts such as digital art, graphic design, or even in marketing.
 
 ### Feature Description:
 
@@ -30,20 +30,20 @@ The "AI Image Generator" project aims to provide users with a tool for generatin
 
 ### Sketches/Visualizations of the Interface:
 
-- *Home Page:* Control panel with generation options, personalization, and access to the gallery.
-- *Generation Window:* Space for selecting parameters and previewing the generated image.
-- *Image Gallery:* Browsing and managing previously created graphics.
+- _Home Page:_ Control panel with generation options, personalization, and access to the gallery.
+- _Generation Window:_ Space for selecting parameters and previewing the generated image.
+- _Image Gallery:_ Browsing and managing previously created graphics.
 
 ### Site Map:
 
-- *Home Page*
+- _Home Page_
     - Control Panel
     - Generation Options
     - Image Gallery
-- *Generation Window*
+- _Generation Window_
     - Generation Parameters
     - Preview of Generated Image
-- *Image Gallery*
+- _Image Gallery_
     - List of Previously Generated Images
     - Sharing and Download Options
 
@@ -74,8 +74,8 @@ The architecture is based on a wrapped structure, where:
 
 ### Code Structure:
 
-- *Directories/Files:* Separate files for generation logic, interface, and data management.
-- *Coding Style:* Utilization of modularity, readability, and comments in the code.
+- _Directories/Files:_ Separate files for generation logic, interface, and data management.
+- _Coding Style:_ Utilization of modularity, readability, and comments in the code.
 
 ## Testing:
 
@@ -118,4 +118,5 @@ The architecture is based on a wrapped structure, where:
 - **Maintenance Costs:** Servers, potential fees for external services, technical support.
 
 ---
+
 [Polish](Docs/READMEPL.md)

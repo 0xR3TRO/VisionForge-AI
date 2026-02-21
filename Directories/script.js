@@ -1,4 +1,4 @@
-// Scripts and functions on this page are the creation of (0xR3TRO)[https://github.com/0xR3TRO]. All rights reserved.  
+// Scripts and functions on this page are the creation of (0xR3TRO)[https://github.com/0xR3TRO]. All rights reserved.
 const apiKey = "YOUR_API_KEY";
 
 const maxImages = 4; // Number of images to generate for each prompt
@@ -46,10 +46,10 @@ async function generateImages(input) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${apiKey}`,
+                    Authorization: `Bearer ${apiKey}`,
                 },
                 body: JSON.stringify({ inputs: prompt }),
-            }
+            },
         );
 
         if (!response.ok) {
@@ -73,7 +73,7 @@ async function generateImages(input) {
     selectedImageNumber = null; // Reset selected image number
 }
 
-document.getElementById("generate").addEventListener('click', () => {
+document.getElementById("generate").addEventListener("click", () => {
     const input = document.getElementById("user-prompt").value;
     generateImages(input);
 });
@@ -82,6 +82,6 @@ function downloadImage(imgUrl, imageNumber) {
     const link = document.createElement("a");
     link.href = imgUrl;
     // Set filename based on the selected image
-    link.download = `image-${imageNumber + 1}.jpg`;
+    link.download = `visionforge-${imageNumber + 1}.jpg`;
     link.click();
 }
