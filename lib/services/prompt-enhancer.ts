@@ -1,5 +1,8 @@
 /**
  * VisionForge AI — Prompt Enhancer Service
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
  *
  * Uses AI to improve, expand, and generate variations of user prompts.
  */

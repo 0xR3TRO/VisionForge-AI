@@ -1,3 +1,9 @@
+/**
+ * VisionForge AI — Image Like API
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
+ */
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";

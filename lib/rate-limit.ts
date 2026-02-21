@@ -1,5 +1,8 @@
 /**
  * VisionForge AI — Rate Limiter
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
  *
  * Token bucket rate limiter with per-IP and per-user limits.
  * Uses an in-memory Map (suitable for single-instance deployments).

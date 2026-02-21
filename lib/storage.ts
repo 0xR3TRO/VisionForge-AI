@@ -1,5 +1,8 @@
 /**
  * VisionForge AI — Cloud Storage Service
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
  *
  * Supports AWS S3, Cloudflare R2, and Supabase Storage.
  * Abstracted behind a unified interface.

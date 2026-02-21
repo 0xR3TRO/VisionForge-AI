@@ -1,3 +1,9 @@
+/**
+ * VisionForge AI — Image Result Display
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
+ */
 "use client";
 
 import { useState, useCallback } from "react";

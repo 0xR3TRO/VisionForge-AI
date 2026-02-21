@@ -1,3 +1,9 @@
+/**
+ * VisionForge AI — User Registration API
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
+ */
 import { NextRequest, NextResponse } from "next/server";
 import { signUpSchema } from "@/lib/validators";
 import { createUser } from "@/lib/services/user-service";

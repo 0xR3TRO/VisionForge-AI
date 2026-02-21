@@ -1,3 +1,9 @@
+/**
+ * VisionForge AI — Gallery Page
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
+ */
 "use client";
 
 import { useEffect, useState, useCallback } from "react";

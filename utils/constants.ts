@@ -1,3 +1,9 @@
+/**
+ * VisionForge AI — Application Constants
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
+ */
 import type { StylePreset, Resolution } from "@/types";
 
 export const APP_NAME = "VisionForge AI";

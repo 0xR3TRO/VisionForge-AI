@@ -1,3 +1,9 @@
+/**
+ * VisionForge AI — Loader Components
+ * @author 0xR3TRO (https://github.com/0xR3TRO)
+ * @copyright 2026 0xR3TRO
+ * @license MIT
+ */
 "use client";
 
 import { cn } from "@/utils/cn";
