@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --font-inter: "Inter", system-ui, sans-serif;
+        --font-jetbrains: "JetBrains Mono", monospace;
+    }
+
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply bg-surface-950 text-white antialiased;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-surface-950;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply rounded-full bg-surface-700 hover:bg-surface-600;
+    }
+
+    /* Selection */
+    ::selection {
+        @apply bg-brand-600/40 text-white;
+    }
+}
+
+@layer components {
+    .gradient-text {
+        @apply bg-gradient-to-r from-brand-400 via-brand-500 to-purple-400 bg-clip-text text-transparent;
+    }
+
+    .gradient-border {
+        @apply border border-transparent;
+        background-clip: padding-box;
+        background-image: linear-gradient(var(--tw-gradient-stops));
+    }
+
+    .glass {
+        @apply bg-surface-900/40 backdrop-blur-xl border border-surface-800/50;
+    }
+
+    .glow-effect {
+        @apply relative;
+    }
+
+    .glow-effect::before {
+        content: "";
+        @apply absolute -inset-px rounded-[inherit] bg-gradient-to-r from-brand-500/20 via-brand-600/20 to-purple-500/20 blur-lg opacity-0 transition-opacity duration-500;
+    }
+
+    .glow-effect:hover::before {
+        @apply opacity-100;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}

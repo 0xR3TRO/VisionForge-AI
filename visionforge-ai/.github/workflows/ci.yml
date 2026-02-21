@@ -1,0 +1,79 @@
+name: CI/CD
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+env:
+    NODE_VERSION: "20"
+
+jobs:
+    lint-and-type-check:
+        name: Lint & Type Check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+                  cache: "npm"
+                  cache-dependency-path: visionforge-ai/package-lock.json
+
+            - name: Install dependencies
+              working-directory: visionforge-ai
+              run: npm ci --legacy-peer-deps
+
+            - name: Generate Prisma Client
+              working-directory: visionforge-ai
+              run: npx prisma generate
+
+            - name: Type check
+              working-directory: visionforge-ai
+              run: npx tsc --noEmit
+
+            - name: Lint
+              working-directory: visionforge-ai
+              run: npx next lint
+
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        needs: lint-and-type-check
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+                  cache: "npm"
+                  cache-dependency-path: visionforge-ai/package-lock.json
+
+            - name: Install dependencies
+              working-directory: visionforge-ai
+              run: npm ci --legacy-peer-deps
+
+            - name: Generate Prisma Client
+              working-directory: visionforge-ai
+              run: npx prisma generate
+
+            - name: Build
+              working-directory: visionforge-ai
+              run: npm run build
+              env:
+                  NEXTAUTH_SECRET: ci-test-secret
+                  NEXTAUTH_URL: http://localhost:3000
+
+    docker:
+        name: Docker Build
+        runs-on: ubuntu-latest
+        needs: build
+        if: github.ref == 'refs/heads/main'
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Build Docker image
+              working-directory: visionforge-ai
+              run: docker build -t visionforge-ai .

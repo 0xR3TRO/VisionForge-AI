@@ -1,0 +1,202 @@
+// VisionForge AI — Database Schema
+// PostgreSQL via Prisma ORM
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Auth Models (NextAuth) ──────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─── Core Models ─────────────────────────────────────
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum SubscriptionTier {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum GenerationStatus {
+  QUEUED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+model User {
+  id            String            @id @default(cuid())
+  name          String?
+  email         String?           @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          UserRole          @default(USER)
+  credits       Int               @default(50)
+  tier          SubscriptionTier  @default(FREE)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  images        Image[]
+  prompts       Prompt[]
+  generations   GenerationJob[]
+  apiKeys       APIKey[]
+  subscription  Subscription?
+  likes         Like[]
+
+  @@index([email])
+}
+
+model Prompt {
+  id            String   @id @default(cuid())
+  text          String   @db.Text
+  enhancedText  String?  @db.Text
+  userId        String
+  createdAt     DateTime @default(now())
+
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  images        Image[]
+  generations   GenerationJob[]
+
+  @@index([userId])
+}
+
+model Image {
+  id            String   @id @default(cuid())
+  url           String
+  storageKey    String
+  width         Int
+  height        Int
+  style         String?
+  isPublic      Boolean  @default(false)
+  isFeatured    Boolean  @default(false)
+  promptId      String
+  userId        String
+  generationId  String?
+  createdAt     DateTime @default(now())
+
+  prompt        Prompt          @relation(fields: [promptId], references: [id], onDelete: Cascade)
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  generation    GenerationJob?  @relation(fields: [generationId], references: [id], onDelete: SetNull)
+  likes         Like[]
+
+  @@index([userId])
+  @@index([promptId])
+  @@index([isPublic, createdAt])
+}
+
+model GenerationJob {
+  id            String           @id @default(cuid())
+  status        GenerationStatus @default(QUEUED)
+  prompt        String           @db.Text
+  params        Json
+  numImages     Int              @default(1)
+  creditsUsed   Int              @default(1)
+  error         String?          @db.Text
+  startedAt     DateTime?
+  completedAt   DateTime?
+  userId        String
+  promptId      String?
+  createdAt     DateTime         @default(now())
+
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  promptRef     Prompt? @relation(fields: [promptId], references: [id], onDelete: SetNull)
+  images        Image[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model APIKey {
+  id          String   @id @default(cuid())
+  name        String
+  key         String   @unique
+  lastUsedAt  DateTime?
+  expiresAt   DateTime?
+  isActive    Boolean  @default(true)
+  userId      String
+  createdAt   DateTime @default(now())
+
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([key])
+  @@index([userId])
+}
+
+model Subscription {
+  id                String           @id @default(cuid())
+  tier              SubscriptionTier @default(FREE)
+  creditsPerMonth   Int              @default(50)
+  currentPeriodEnd  DateTime?
+  cancelAtPeriodEnd Boolean          @default(false)
+  stripeCustomerId  String?
+  stripeSubId       String?
+  userId            String           @unique
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  userId    String
+  imageId   String
+  createdAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  image Image @relation(fields: [imageId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, imageId])
+  @@index([imageId])
+}
